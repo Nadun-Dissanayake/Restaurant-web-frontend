@@ -43,7 +43,7 @@ const CreateRestaurant = () => {
     }
 
     try {
-      const newRestaurant = await axios.post('http://localhost:8000/restaurant/save', restaurant);
+      const newRestaurant = await axios.post('http://localhost:8000/restaurants/save', restaurant);
       console.log('Post successful:', newRestaurant.data);
       setRestaurant({
         name: '',
@@ -60,6 +60,7 @@ const CreateRestaurant = () => {
   return (
     <div className="container mx-auto mt-8">
       <form onSubmit={handleSubmit}>
+      <h1 className="text-3xl font-bold mb-4">Create New Restaurant</h1>
         <div className="form-group mb-4">
           <label htmlFor="restaurantName" className="form-label">Restaurant Name</label>
           <input
@@ -89,7 +90,7 @@ const CreateRestaurant = () => {
         <div className="form-group mb-4">
           <label htmlFor="restaurantTelephone" className="form-label">Telephone Number</label>
           <input
-            type="text"
+            type="number"
             className="form-control border border-gray-300 p-2 rounded"
             id="restaurantTelephone"
             placeholder="Enter telephone number"

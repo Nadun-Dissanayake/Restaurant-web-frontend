@@ -3,13 +3,13 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const RestaurantDetails = () => {
-  const { id } = useParams(); // Extract the id parameter from the URL
+  const { id } = useParams(); 
   const [restaurant, setRestaurant] = useState({});
 
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/restaurant/${id}`);
+        const response = await axios.get(`http://localhost:8000/restaurants/${id}`);
         if (response.data.success) {
           setRestaurant(response.data.oneRestaurant);
         }
@@ -19,7 +19,7 @@ const RestaurantDetails = () => {
     };
 
     fetchRestaurant();
-  }, [id]); // Dependency array ensures the effect runs when the id changes
+  }, [id]);
 
   return (
     <div className="container mt-5">

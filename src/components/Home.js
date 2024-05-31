@@ -25,7 +25,7 @@ const Home = () => {
   const handleDelete = async (id,event) => {
     event.stopPropagation();
     try {
-      await axios.delete(`http://localhost:8000/restaurant/delete/${id}`);
+      await axios.delete(`http://localhost:8000/restaurants/delete/${id}`);
       console.log('Delete successful');
       alert("Restaurant deleted successfully");
       retrieveRestaurants();

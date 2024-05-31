@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const EditRestaurant = () => {
-  const { id } = useParams(); // Extract the id parameter from the URL
+  const { id } = useParams(); 
   const [restaurant, setRestaurant] = useState({});
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
@@ -19,7 +19,7 @@ const EditRestaurant = () => {
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/restaurant/${id}`);
+        const response = await axios.get(`http://localhost:8000/restaurants/${id}`);
         if (response.data.success) {
           setRestaurant(response.data.oneRestaurant);
         }
@@ -29,7 +29,7 @@ const EditRestaurant = () => {
     };
 
     fetchRestaurant();
-  }, [id]); // Dependency array ensures the effect runs when the id changes
+  }, [id]); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,7 +51,7 @@ const EditRestaurant = () => {
 
     if (Object.keys(validationError).length === 0) {
       try {
-        const updateRestaurant = await axios.put(`http://localhost:8000/restaurant/update/${id}`, restaurant);
+        const updateRestaurant = await axios.put(`http://localhost:8000/restaurants/update/${id}`, restaurant);
         console.log('Post successful:', updateRestaurant.data);
         alert("Restaurant Updated Successfully");
         navigate('/');
@@ -64,7 +64,9 @@ const EditRestaurant = () => {
   return (
     <div className="container mx-auto mt-8">
       <form onSubmit={handleSubmit}>
+        <h1 className="text-3xl font-bold mb-4">Edit Restaurant Details</h1>
         <div className="form-group mb-4">
+          
           <label htmlFor="restaurantName" className="form-label">Restaurant Name</label>
           <input
             type="text"
@@ -93,7 +95,7 @@ const EditRestaurant = () => {
         <div className="form-group mb-4">
           <label htmlFor="restaurantTelephone" className="form-label">Telephone Number</label>
           <input
-            type="text"
+            type="number"
             className="form-control border border-gray-300 p-2 rounded"
             id="restaurantTelephone"
             placeholder="Enter telephone number"
