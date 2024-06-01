@@ -1,31 +1,26 @@
 
 ## Node.js Restaurant 
 
+## Running in Development Environment
 
+To run the project in a development environment:
 
-## Description
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Nadun-Dissanayake/Restaurant-web-frontend
+2. Navigate to the project directory:
+   ```sh
+   cd CirclePOS-Web-App
 
-- This React application is built using [create-react-app](https://create-react-app.dev/).
-- It uses [Tailwind CSS](https://tailwindcss.com/)
+3. Install dependencies:
+   ```sh
+   npm install 
 
-## Pre-requisites
+4. Start the development server:
+   ```sh
+   npm run server
 
-- [git](https://git-scm.com/) - v2.13 or greater
-- [NodeJS](https://nodejs.org/en/) - v16 or greater
-- [npm](https://www.npmjs.com/) - v6 or greater
-
-## clone the project from HGitHub
-
-- create a folder and open the git bash
--  `git init`
--  `git clone https://github.com/Nadun-Dissanayake/Restaurant-web-frontend`
--  opne code from visual code (or any other IDE)
-
-## Running in dev environment
-
-1.  `cd YOUR_APPLICATION`
-2.  `npm install`
-3.  `npm run start`
+5. Open http://localhost:3000 to view it in the browser.
 
 ## .env file
 
