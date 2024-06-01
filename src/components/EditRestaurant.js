@@ -3,11 +3,19 @@ import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const EditRestaurant = () => {
-  const { id } = useParams(); 
+  // Get the restaurant ID from the URL parameters
+  const { id } = useParams();
+
+  // State to hold the restaurant data
   const [restaurant, setRestaurant] = useState({});
+
+  // Hook to navigate to different routes programmatically
   const navigate = useNavigate();
+
+  // State to hold form validation errors
   const [errors, setErrors] = useState({});
 
+  // Handler for form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setRestaurant(prevState => ({
@@ -16,6 +24,7 @@ const EditRestaurant = () => {
     }));
   };
 
+  // Fetch restaurant details on component mount and when ID changes
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
@@ -29,34 +38,43 @@ const EditRestaurant = () => {
     };
 
     fetchRestaurant();
-  }, [id]); 
+  }, [id]);
 
+  // Handler for form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Object to store validation errors
     const validationError = {};
 
-    if (!restaurant.name.trim()) {
+    // Validation checks
+    if (!restaurant.name?.trim()) {
       validationError.name = "Name is Required";
     }
 
-    if (!restaurant.address.trim()) {
+    if (!restaurant.address?.trim()) {
       validationError.address = "Address is Required";
     }
 
-    if (!restaurant.telephone.trim()) {
+    if (!restaurant.telephone?.trim()) {
       validationError.telephone = "Telephone Number is Required";
     }
 
+    // Update errors state
     setErrors(validationError);
 
+    // If no validation errors, proceed to submit
     if (Object.keys(validationError).length === 0) {
       try {
+        // Put updated restaurant data to the server
         const updateRestaurant = await axios.put(`http://localhost:8000/restaurants/update/${id}`, restaurant);
-        console.log('Post successful:', updateRestaurant.data);
+        console.log('Update successful:', updateRestaurant.data);
         alert("Restaurant Updated Successfully");
+        
+        // Navigate to the homepage after successful update
         navigate('/');
       } catch (error) {
-        console.error('Error while posting:', error);
+        console.error('Error while updating:', error);
       }
     }
   };
@@ -65,8 +83,8 @@ const EditRestaurant = () => {
     <div className="container mx-auto mt-8">
       <form onSubmit={handleSubmit}>
         <h1 className="text-3xl font-bold mb-4">Edit Restaurant Details</h1>
+
         <div className="form-group mb-4">
-          
           <label htmlFor="restaurantName" className="form-label">Restaurant Name</label>
           <input
             type="text"
@@ -79,6 +97,7 @@ const EditRestaurant = () => {
           />
           {errors.name && <span className="text-red-600">{errors.name}</span>}
         </div>
+
         <div className="form-group mb-4">
           <label htmlFor="restaurantAddress" className="form-label">Restaurant Address</label>
           <input
@@ -92,6 +111,7 @@ const EditRestaurant = () => {
           />
           {errors.address && <span className="text-red-600">{errors.address}</span>}
         </div>
+
         <div className="form-group mb-4">
           <label htmlFor="restaurantTelephone" className="form-label">Telephone Number</label>
           <input
@@ -105,6 +125,7 @@ const EditRestaurant = () => {
           />
           {errors.telephone && <span className="text-red-600">{errors.telephone}</span>}
         </div>
+        
         <button type="submit" className="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Submit
         </button>

@@ -3,9 +3,13 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 const RestaurantDetails = () => {
+  // Extract the restaurant ID from the URL parameters
   const { id } = useParams(); 
+  
+  // State to hold the restaurant details
   const [restaurant, setRestaurant] = useState({});
 
+  // Fetch restaurant details when the component mounts and when the ID changes
   useEffect(() => {
     const fetchRestaurant = async () => {
       try {
