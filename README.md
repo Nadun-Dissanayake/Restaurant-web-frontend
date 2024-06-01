@@ -1,5 +1,5 @@
 
-## Node.js Restaurant 
+## Restaurant-web-frontend 
 
 ## Running in Development Environment
 
