@@ -18,7 +18,7 @@ To run the project in a development environment:
 
 4. Start the development server:
    ```sh
-   npm run server
+   npm run start
 
 5. Open http://localhost:3000 to view it in the browser.
 
