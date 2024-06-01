@@ -10,7 +10,7 @@ To run the project in a development environment:
    git clone https://github.com/Nadun-Dissanayake/Restaurant-web-frontend
 2. Navigate to the project directory:
    ```sh
-   cd CirclePOS-Web-App
+   cd Restaurant-web-frontend
 
 3. Install dependencies:
    ```sh
